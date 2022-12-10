@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Paper } from "@mui/material";
 
-function NavBar() {
+function Title() {
   return <Paper style={{ height: 50, margin: 10 }}>title</Paper>;
 }
-export default NavBar;
+export default Title;

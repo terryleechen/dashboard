@@ -1,14 +1,52 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { FC, useEffect, useState } from "react";
+import axios from "axios";
+import { Grid } from "@mui/material";
 
-import Home from "./components/Pages/Home";
+import Title from "./components/Layouts/Title";
+import SideBar from "./components/Layouts/SideBar";
+import ViewsHandler from "./components/Views/ViewsHandler";
+import Router from "./components/Router/Router";
+
+type Client = {
+  id: number;
+  guid: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  city: string;
+  country: string;
+};
 
 function App() {
+  const [clients, setClients] = useState<Client[]>([] as Client[]);
+
+  useEffect(() => {
+    axios
+      .get("https://www.randyconnolly.com/funwebdev/3rd/api/stocks/client.php")
+      .then((res) => {
+        setClients(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Grid container style={{ width: "200%", margin: "0 auto" }}>
+        <Grid item xs={12}>
+          <Title />
+        </Grid>
+        {/**side bar */}
+        <Grid item xs={0.25} style={{ margin: 10 }}>
+          <SideBar />
+        </Grid>
+        {/** views */}
+        <Grid item xs={11} style={{ margin: 10 }}>
+          {/* View handler */}
+          <Router clients={clients} />
+        </Grid>
+      </Grid>
     </div>
   );
 }
