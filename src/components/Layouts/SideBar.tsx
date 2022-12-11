@@ -1,13 +1,17 @@
-import { FC } from "react";
-
-import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from "@mui/icons-material/Person";
+import SideBarData from "./SideBarData";
 
 function SidBar() {
   return (
-    <div className="bg-blue-100 h-screen">
-      <HomeIcon />
-      <PersonIcon />
+    <div>
+      <ul>
+        {SideBarData.map((val, key) => {
+          return (
+            <li key={key}>
+              <div className="hover:bg-cyan-700">{val.icon}</div>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

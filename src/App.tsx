@@ -38,7 +38,12 @@ function App() {
           <Title />
         </Grid>
         {/**side bar */}
-        <Grid item xs={0.25} style={{ margin: 10 }}>
+        <Grid
+          item
+          xs={0.5}
+          style={{ margin: 10 }}
+          className="bg-indigo-500 h-screen"
+        >
           <SideBar />
         </Grid>
         {/** views */}
