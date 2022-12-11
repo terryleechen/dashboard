@@ -26,12 +26,12 @@ function PortList({ port }: { port: Stock[] }) {
       let i: number = +index;
       let p = port[i];
 
+      // get data grid rows
       setRows((prev) => [...prev, p]);
     });
   }, [port.length]);
 
   const handleRowClick: GridEventListener<"rowClick"> = (company) => {
-    console.log(company);
     navigate("/company", { state: { company: company.row } });
   };
 
