@@ -11,29 +11,17 @@ type Day = {
   volume: number;
 };
 
-function HiLow({ history }: { history: Day[] }) {
-  //error in structure of data
-  const high: { x: string[]; y: number[]; type: string } = {
+function Volume({ history }: { history: Day[] }) {
+  const volume: { x: string[]; y: number[]; type: string } = {
     x: [],
     y: [],
     type: "scatter",
   };
-  const low: { x: string[]; y: number[]; type: string } = {
-    x: [],
-    y: [],
-    type: "scatter",
-  };
-  const data: [
-    { x: string[]; y: number[]; type: string },
-    { x: string[]; y: number[]; type: string }
-  ] = [high, low];
 
   useEffect(() => {
     history.map((day) => {
-      high.x.push(day.date);
-      high.y.push(day.high);
-      low.x.push(day.date);
-      low.y.push(day.low);
+      volume.x.push(day.date);
+      volume.y.push(day.volume);
     });
   }, [history]);
 
@@ -43,21 +31,12 @@ function HiLow({ history }: { history: Day[] }) {
         //use Plotly to create line graphs
         data={[
           {
-            x: data[0].x,
-            y: data[0].y,
+            x: volume.x,
+            y: volume.y,
             type: "scatter",
             name: "High",
             line: {
-              color: "purple",
-            },
-          },
-          {
-            x: data[1].x,
-            y: data[1].y,
-            type: "scatter",
-            name: "Low",
-            line: {
-              color: "green",
+              color: "organge",
             },
           },
         ]}
@@ -72,11 +51,11 @@ function HiLow({ history }: { history: Day[] }) {
             linecolor: "#636363",
             fixedrange: true,
           },
-          title: "Hi/Low Stock Price",
+          title: "Daily Volume",
         }}
         config={{ displayModeBar: false }}
       />
     </div>
   );
 }
-export default HiLow;
+export default Volume;

@@ -1,12 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 import { Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 
 import CompanyInfo from "../Company/CompanyInfo";
 import CompanyFinanical from "../Company/CompanyFinancial";
+import HiLow from "../Company/HiLow";
+import Volume from "../Company/Volume";
 
 type Company = {
   // Info
@@ -85,7 +88,7 @@ function Company() {
 
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={4}>
           <Stack spacing={2}>
             {/** company details*/}
@@ -95,13 +98,18 @@ function Company() {
           </Stack>
         </Grid>
         <Grid item xs={8}>
-          <Stack spacing={1}>
-            <Grid item xs={12}>
-              {/** high/low details */}
-
-              {/** volume details */}
-            </Grid>
-          </Stack>
+          <Grid item xs={12}>
+            <Stack spacing={2}>
+              <Box sx={{ border: 1, height: 250 }}>
+                {/** high/low details */}
+                {history && <HiLow history={history} />}
+              </Box>
+              <Box sx={{ border: 1, height: 250 }}>
+                {/** volume details */}
+                {history && <Volume history={history} />}
+              </Box>
+            </Stack>
+          </Grid>
         </Grid>
       </Grid>
     </div>
