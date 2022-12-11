@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -29,15 +29,6 @@ function Main({ clients }: { clients: Client[] }) {
 
   const handleChange = (event: any) => {
     setId(event.target.value);
-
-    // Object.keys(clients).map(function (index) {
-    //   let i: number = +index;
-    //   let c = clients[i];
-    //   if (c.id === event.target.value) {
-    //     //send client info to parent - router
-
-    //   }
-    // });
   };
 
   return (

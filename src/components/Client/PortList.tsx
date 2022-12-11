@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { useNavigate } from "react-router-dom";
+import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 
 type Stock = {
   id: number;
@@ -9,8 +10,9 @@ type Stock = {
   price: number;
   value: number;
 };
-function PortDetails({ port }: { port: Stock[] }) {
+function PortList({ port }: { port: Stock[] }) {
   const [rows, setRows] = useState<Stock[]>([] as Stock[]);
+  const navigate = useNavigate();
 
   const columns = [
     { field: "symbol", headerName: "Symbol", width: 70 },
@@ -20,7 +22,6 @@ function PortDetails({ port }: { port: Stock[] }) {
   ];
 
   useEffect(() => {
-    console.log(port);
     Object.keys(port).map(function (index) {
       let i: number = +index;
       let p = port[i];
@@ -29,6 +30,11 @@ function PortDetails({ port }: { port: Stock[] }) {
     });
   }, [port.length]);
 
+  const handleRowClick: GridEventListener<"rowClick"> = (company) => {
+    console.log(company);
+    navigate("/company", { state: { company: company.row } });
+  };
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
@@ -36,8 +42,9 @@ function PortDetails({ port }: { port: Stock[] }) {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        onRowClick={handleRowClick}
       />
     </div>
   );
 }
-export default PortDetails;
+export default PortList;

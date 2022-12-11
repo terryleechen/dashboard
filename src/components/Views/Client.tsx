@@ -9,7 +9,7 @@ import ClientInfo from "../Client/ClientInfo";
 import PortInfo from "../Client/PortInfo";
 import TopStock from "../Client/TopStock";
 import Calculate from "../Others/Calculate";
-import PortDetails from "../Client/PortDetails";
+import PortList from "../Client/PortList";
 
 type Stock = {
   id: number;
@@ -92,7 +92,7 @@ function Client() {
           </Grid>
           <Grid item xs={12}>
             {/** Port details */}
-            {port && <PortDetails port={port} />}
+            {port && <PortList port={port} />}
           </Grid>
         </Stack>
       </Grid>
