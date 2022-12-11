@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import ViewsHandler from "../Views/ViewsHandler";
-import Test from "../Views/Test";
+
 import Main from "../Views/Main";
 import Client from "../Views/Client";
 import Company from "../Views/Company";

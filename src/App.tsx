@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div>
-      <Grid container style={{ width: "200%", margin: "0 auto" }}>
+      <Grid container>
         <Grid item xs={12}>
           <Title />
         </Grid>
